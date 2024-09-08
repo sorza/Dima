@@ -1,6 +1,6 @@
-﻿using Dima.Core.Requests.Transactions;
+﻿using Dima.Core.Models;
+using Dima.Core.Requests.Transactions;
 using Dima.Core.Responses;
-using System.Transactions;
 
 namespace Dima.Core.Handlers
 {
@@ -10,6 +10,6 @@ namespace Dima.Core.Handlers
         Task<Response<Transaction?>> UpdateAsync(UpdateTransactionRequest request);
         Task<Response<Transaction?>> DeleteAsync(DeleteTransactionRequest request);
         Task<Response<Transaction?>> GetByIdAsync(GetTransactionByIdRequest request);
-        Task<PagedResponse<List<Transaction>>> GetByPeriodAsync(GetTransactionsByPeriodRequest request);
+        Task<PagedResponse<List<Transaction>?>> GetByPeriodAsync(GetTransactionsByPeriodRequest request);
     }
 }
