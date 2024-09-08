@@ -30,7 +30,7 @@ namespace Dima.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Desciption")
+                    b.Property<string>("Description")
                         .HasMaxLength(255)
                         .HasColumnType("NVARCHAR");
 

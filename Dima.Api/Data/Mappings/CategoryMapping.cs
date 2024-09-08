@@ -17,7 +17,7 @@ namespace Dima.Api.Data.Mappings
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(80);
 
-            builder.Property(x => x.Desciption)
+            builder.Property(x => x.Description)
                 .IsRequired(false)
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(255);

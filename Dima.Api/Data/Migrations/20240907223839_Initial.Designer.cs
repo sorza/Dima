@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dima.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240906012544_v1")]
-    partial class v1
+    [Migration("20240907223839_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,7 +33,7 @@ namespace Dima.Api.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<string>("Desciption")
+                    b.Property<string>("Description")
                         .HasMaxLength(255)
                         .HasColumnType("NVARCHAR");
 

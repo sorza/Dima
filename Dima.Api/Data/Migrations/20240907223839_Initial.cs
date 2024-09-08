@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Dima.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class v1 : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace Dima.Api.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "NVARCHAR(80)", maxLength: 80, nullable: false),
-                    Desciption = table.Column<string>(type: "NVARCHAR(255)", maxLength: 255, nullable: true),
+                    Description = table.Column<string>(type: "NVARCHAR(255)", maxLength: 255, nullable: true),
                     UserId = table.Column<string>(type: "VARCHAR(160)", maxLength: 160, nullable: false)
                 },
                 constraints: table =>
