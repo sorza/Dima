@@ -19,7 +19,6 @@ namespace Dima.Api.Endpoints
                 .MapEndpoint<GetAllCategoriesEndpoint>();
         }
 
-
         private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)
             where TEndpoint : IEndpoint
         {
