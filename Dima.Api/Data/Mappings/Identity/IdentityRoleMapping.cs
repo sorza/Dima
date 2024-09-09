@@ -12,7 +12,7 @@ namespace Dima.Api.Data.Mappings.Identity
             builder.HasKey(r => r.Id);
             builder.HasIndex(r => r.NormalizedName).IsUnique();
             builder.Property(r => r.ConcurrencyStamp).IsConcurrencyToken();
-            builder.Property(r => r.Name).HasMaxLength(256);
+            builder.Property(r => r.Name).HasMaxLength(256).IsRequired();
             builder.Property(r => r.NormalizedName).HasMaxLength(256);
         }
     }
