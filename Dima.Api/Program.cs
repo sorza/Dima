@@ -1,3 +1,4 @@
+using Dima.Api;
 using Dima.Api.Common.Api;
 using Dima.Api.Endpoints;
 
@@ -19,6 +20,7 @@ internal class Program
         if(app.Environment.IsDevelopment())
             app.ConfigureDevEnvironment();
 
+        app.UseCors(ApiConfiguration.CorsPolicyName);
         app.UseSecurity();        
         app.MapEndpoints();
 
