@@ -3,6 +3,7 @@ using Dima.Core.Handlers;
 using Dima.Core.Models;
 using Dima.Core.Requests.Categories;
 using Dima.Core.Responses;
+using System.Security.Claims;
 
 namespace Dima.Api.Endpoints.Categories
 {
@@ -15,11 +16,11 @@ namespace Dima.Api.Endpoints.Categories
         .WithDescription("Atualiza uma categoria")
         .WithOrder(2)
         .Produces<Response<Category?>>();
-        private static async Task<IResult> HandleAsync(ICategoryHandler handler, UpdateCategoryRequest request, long id)
+        private static async Task<IResult> HandleAsync(ClaimsPrincipal user, ICategoryHandler handler, UpdateCategoryRequest request, long id)
         {
             var result = await handler.UpdateAsync(request);
 
-            request.UserId = "teste@teste.com";
+            request.UserId = user.Identity?.Name ?? string.Empty;
             request.Id = id;
 
             return result.IsSuccess
