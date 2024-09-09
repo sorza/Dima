@@ -1,8 +1,10 @@
 using Dima.Api.Data;
 using Dima.Api.Endpoints;
 using Dima.Api.Handlers;
+using Dima.Api.Models;
 using Dima.Core.Handlers;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 internal class Program
@@ -25,6 +27,12 @@ internal class Program
         {
             x.UseSqlServer(cnnStr);
         });
+
+        builder.Services
+            .AddIdentityCore<User>()
+            .AddRoles<IdentityRole<long>>()
+            .AddEntityFrameworkStores<AppDbContext>()
+            .AddApiEndpoints();
 
         builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
         builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
