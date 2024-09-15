@@ -5,7 +5,7 @@ namespace Dima.Web.Security
     public interface ICookieAuthenticationStateProvider
     {
         Task<bool> CheckAuthenticationAsync();
-        Task<AuthenticationState> AuthenticationStateAsync();
+        Task<AuthenticationState> GetAuthenticationStateAsync();
         void NotifyAuthenticationStateChanged();
     }
 }
