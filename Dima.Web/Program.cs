@@ -1,3 +1,5 @@
+using Dima.Core.Handlers;
+using Dima.Web.Handlers;
 using Dima.Web.Security;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
@@ -29,6 +31,8 @@ namespace Dima.Web
             {
                 opt.BaseAddress = new Uri(Configuration.BackEndUrl);
             }).AddHttpMessageHandler<CookieHandler>();
+
+            builder.Services.AddTransient<IAccountHandler, AccountHandler>();
 
             await builder.Build().RunAsync();
         }
