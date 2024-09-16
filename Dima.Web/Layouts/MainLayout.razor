@@ -6,21 +6,47 @@
     Theme="Configuration.Theme" />
 <MudSnackbarProvider/>
 
-<MudLayout>
-    <MudAppBar>
-        FinApp
-        <MudSpacer/>
-        <MudSwitch @bind-Value="@_isDarkMode"/>
-    </MudAppBar>
-    <MudMainContent>
-        <MudContainer>
-            @Body
-        </MudContainer>
-    </MudMainContent>
-</MudLayout>
+<AuthorizeView>
+    <Authorized>
+        <MudLayout>
+            <MudAppBar>
+                <MudIconButton 
+                    Icon="@Icons.Material.Filled.Menu"
+                    Color="Color.Inherit"
+                    Edge="Edge.Start"
+                    OnClick="TogglerDrawer"/>
+                Dima
+                <MudSpacer />
+                <MudText Typo="Typo.caption">
+                    @context.User.Identity?.Name
+                </MudText>
+                <MudSwitch 
+                    Color="Color.Inherit"
+                    @bind-Value="@_isDarkMode" 
+                    T="bool"
+                    Class="ma-4"
+                    ThumbIcon="@Icons.Material.Filled.Lightbulb"/>
+            </MudAppBar>
+            <MudDrawer @bind-Open="@_isDrawerOpened">
+                <NavMenu/>
+            </MudDrawer>
+            <MudMainContent>
+                <MudContainer>
+                    @Body
+                </MudContainer>
+            </MudMainContent>
+        </MudLayout>
+    </Authorized>
+    <NotAuthorized>
+        <LoginRedirect />
+    </NotAuthorized>
+</AuthorizeView>
+
+
 
 @code
 {
+    private bool _isDrawerOpened = true;
     private bool _isDarkMode = true;
     private MudThemeProvider _mudThemeProvider = null!;
 
@@ -40,4 +66,8 @@
         StateHasChanged();
         return Task.CompletedTask;
     }
+
+    private void TogglerDrawer() =>
+        _isDrawerOpened = !_isDrawerOpened;
+    
 }

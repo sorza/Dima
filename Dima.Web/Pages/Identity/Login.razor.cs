@@ -50,8 +50,12 @@ namespace Dima.Web.Pages.Identity
             {
                 var result = await Handler.LoginAsync(InputModel);
 
-                if (result.IsSuccess)                                   
-                    Navigation.NavigateTo("/");                
+                if (result.IsSuccess)
+                {
+                    await AuthenticationStateProvider.GetAuthenticationStateAsync();
+                    AuthenticationStateProvider.NotifyAuthenticationStateChanged();
+                    Navigation.NavigateTo("/");
+                }                                   
                 else                
                     Snackbar.Add(result.Message!, Severity.Error);                
             }
