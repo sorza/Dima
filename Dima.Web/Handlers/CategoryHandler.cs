@@ -24,9 +24,8 @@ namespace Dima.Web.Handlers
         }
 
         public async Task<PagedResponse<List<Category>>> GetAllAsync(GetAllCategoriesRequest request)
-        {
-            throw new NotImplementedException();
-        }
+            => await _client.GetFromJsonAsync<PagedResponse<List<Category>>>("v1/categories")
+                ?? new PagedResponse<List<Category>>(null, 400, "Não foi possível obter as categorias");        
 
         public async Task<Response<Category?>> GetByIdAsync(GetCategoryByIdRequest request)
             => await _client.GetFromJsonAsync<Response<Category?>>($"v1/categories/{request.Id}")
