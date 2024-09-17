@@ -27,7 +27,7 @@ namespace Dima.Web
                 AppbarText = Colors.Shades.Black,
                 TextPrimary = Colors.Shades.Black,
                 DrawerText = Colors.Shades.White,
-                DrawerBackground = new MudColor("#022902")
+                DrawerBackground = Colors.Green.Darken4
             },
 
             PaletteDark = new PaletteDark
