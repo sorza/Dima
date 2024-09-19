@@ -12,6 +12,7 @@ namespace Dima.Web.Pages.Categories
 
         public bool IsBusy { get; set; } = false;
         public List<Category> Categories { get; set; } = [];
+        public string SearchTerm { get; set; } = string.Empty;
 
         #endregion
 
@@ -22,6 +23,9 @@ namespace Dima.Web.Pages.Categories
 
         [Inject]
         public ISnackbar Snackbar { get; set; } = null!;
+
+        [Inject]
+        public IDialogService DialogService { get; set; } = null!;
 
         #endregion
 
@@ -46,6 +50,55 @@ namespace Dima.Web.Pages.Categories
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        #endregion
+
+        #region Methods
+
+        public Func<Category, bool> Filter => category =>
+        {
+            if (string.IsNullOrEmpty(SearchTerm))
+                return true;
+
+            if (category.Id.ToString().Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (category.Title.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            if (category.Description is not null && category.Description.Contains(SearchTerm, StringComparison.OrdinalIgnoreCase))
+                return true;
+
+            return false;
+        };
+
+        public async void OnDeleteButtonClickedAsync(long id, string title)
+        {
+            var result = await DialogService.ShowMessageBox(
+                "ATENÇÃO",
+                $"Ao prosseguir a categoria {title} será excluída. Esta é uma ação irreversível! Deseja continuar?",
+                yesText:"EXCLUIR",
+                cancelText:"Cancelar");
+
+            if (result is true)
+                await OnDeleteAsync(id, title);
+
+            StateHasChanged();
+        }
+
+        public async Task OnDeleteAsync(long id, string title)
+        {
+            try
+            {
+                await Handler.DeleteAsync(new DeleteCategoryRequest { Id = id });
+                Categories.RemoveAll(x => x.Id == id);
+                Snackbar.Add($"Categoria {title} excluida.", Severity.Success);
+            }
+            catch (Exception e)
+            {
+                Snackbar.Add(e.Message, Severity.Error);
             }
         }
 
