@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
+using System.Globalization;
 
 namespace Dima.Web
 {
@@ -35,6 +36,10 @@ namespace Dima.Web
             builder.Services.AddTransient<IAccountHandler, AccountHandler>();
             builder.Services.AddTransient<ITransactionHandler, TransactionHandler>();
             builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
+
+            builder.Services.AddLocalization();
+            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
+            CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("pt-BR");
 
             await builder.Build().RunAsync();
         }

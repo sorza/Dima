@@ -38,7 +38,7 @@ namespace Dima.Web.Pages.Categories
                 var result = await Handler.CreateAsync(InputModel);
                 if (result.IsSuccess)
                 {
-                    Snackbar.Add("Transação criada com sucesso", Severity.Success);
+                    Snackbar.Add("Categoria criada com sucesso", Severity.Success);
                     NavigationManager.NavigateTo("/categorias");
                 }                   
                 else
