@@ -74,7 +74,7 @@ namespace Dima.Web.Pages.Transactions
                 if (result.IsSuccess)
                 {
                     Snackbar.Add("Transação criada com sucesso", Severity.Success);
-                    NavigationManager.NavigateTo("/transactions");
+                    NavigationManager.NavigateTo("/lancamentos/historico");
                 }
                 else
                     Snackbar.Add(result.Message!, Severity.Error);
