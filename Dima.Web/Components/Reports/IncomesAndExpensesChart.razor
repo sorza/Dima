@@ -1,11 +1,13 @@
-﻿@inherits ExpensesByCategoryChartComponent
+﻿@inherits IncomesAndExpensesChartComponent
 
-@if(Data.Count > 0)
+@if(Series is not null)
 {
     <MudChart
-        ChartType="ChartType.Pie"
-        InputData="@Data.ToArray()"
-        InputLabels="@Labels.ToArray()"
+        ChartOptions="Options"
+        ChartType="ChartType.Line"
+        ChartSeries="Series"
+        XAxisLabels="Labels.ToArray()"
+        CanHideSeries="true"
         Width="100%"
         Height="350px"/>
 }
@@ -15,4 +17,3 @@ else
         <MudProgressCircular Indeterminate="true" Color="Color.Primary"></MudProgressCircular>
     </div>
 }
-
