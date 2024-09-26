@@ -5,7 +5,6 @@ using Dima.Core.Models.Reports;
 using Dima.Core.Requests.Reports;
 using Dima.Core.Responses;
 using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dima.Api.Handlers
 {
@@ -32,31 +31,34 @@ namespace Dima.Api.Handlers
         }
 
         public async Task<Response<FinancialSummary?>> GetFinancialSummaryReportAsync(GetFinancialSummaryRequest request)
-        {
+        {          
             var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             try
             {
                 var data = await context
-                .Transactions
-                .AsNoTracking()
-                .Where(x => x.UserId == request.UserId
-                        && x.PaidOrReceivedAt >= startDate
-                        && x.PaidOrReceivedAt <= DateTime.Now)
-                .GroupBy(x => 1)
-                .Select(x => new FinancialSummary(
-                    request.UserId,
-                    x.Where(t => t.Type == ETransactionType.Deposit).Sum(s => s.Amount),
-                    x.Where(t => t.Type == ETransactionType.Withdraw).Sum(s => s.Amount))
-                ).FirstOrDefaultAsync();
+                    .Transactions
+                    .AsNoTracking()
+                    .Where(
+                        x => x.UserId == request.UserId
+                             && x.PaidOrReceivedAt >= startDate
+                             && x.PaidOrReceivedAt <= DateTime.Now
+                    )
+                    .GroupBy(x => 1)
+                    .Select(x => new FinancialSummary(
+                        request.UserId,
+                        x.Where(ty => ty.Type == ETransactionType.Deposit).Sum(t => t.Amount),
+                        x.Where(ty => ty.Type == ETransactionType.Withdraw).Sum(t => t.Amount))
+                    )
+                    .FirstOrDefaultAsync();
 
                 return new Response<FinancialSummary?>(data);
             }
-            catch 
+            catch
             {
-                return new Response<FinancialSummary?>(null, 500, "Não foi possível obter o resultado financeiro");
-            }
-                
-        }
+                return new Response<FinancialSummary?>(null, 500,
+                    "Não foi possível obter o resultado financeiro");
+            }       
+    }
 
         public async Task<Response<List<IncomesAndExpenses>?>> GetIncomesAndExpensesReportAsync(GetIncomesAndExpensesRequest request)
         {
