@@ -165,9 +165,24 @@ namespace Dima.Api.Handlers
             }
         }
 
-        public Task<Response<Order>> GetByNumberAsync(GetOrderByNumberRequest request)
+        public async Task<Response<Order>> GetByNumberAsync(GetOrderByNumberRequest request)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var order = await context.Orders
+                    .AsNoTracking()
+                    .Include(o => o.Product)
+                    .Include(o => o.Voucher)
+                    .FirstOrDefaultAsync(x=> x.Number == request.Number && x.UserId == request.UserId);
+
+                return order is null
+                    ? new Response<Order>(null, 404, "Pedido não encontrado")
+                    : new Response<Order>(order);
+            }
+            catch 
+            {
+                new Response<Order?>(null, 500, "Falha ao buscar pedido.");
+            }
         }
 
         public async Task<Response<Order?>> PayAsync(PayOrderRequest request)
