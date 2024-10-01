@@ -181,7 +181,7 @@ namespace Dima.Api.Handlers
             }
             catch 
             {
-                new Response<Order?>(null, 500, "Falha ao buscar pedido.");
+                return new Response<Order>(null, 500, "Falha ao buscar pedido.");
             }
         }
 
