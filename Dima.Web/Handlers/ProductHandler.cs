@@ -14,7 +14,7 @@ namespace Dima.Web.Handlers
             ?? new PagedResponse<List<Product>?>(null, 400, "Não foi possível obter os produtos");
 
         public async Task<Response<Product?>> GetBySlugAsync(GetProductBySlugRequest request)
-        => await _client.GetFromJsonAsync<Response<Product?>>($"v1/prodcts/{request.Slug}")
+        => await _client.GetFromJsonAsync<Response<Product?>>($"v1/products/{request.Slug}")
             ?? new Response<Product?>(null, 400, "Não foi possível obter o produto");
     }
 }
