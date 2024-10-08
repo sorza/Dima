@@ -42,7 +42,7 @@ namespace Dima.Web.Handlers
                 ?? new Response<Order?>(null, 400, "Não foi possível pagar o pedido.");
         }
 
-        public async Task<Response<Order>> RefundOrderRequest(RefundOrderRequest request)
+        public async Task<Response<Order>> RefundAsync(RefundOrderRequest request)
         {
             var result = await _client.PostAsJsonAsync($"v1/orders/{request.Id}/refund", request);
 

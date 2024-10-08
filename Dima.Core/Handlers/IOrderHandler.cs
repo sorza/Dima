@@ -9,7 +9,7 @@ namespace Dima.Core.Handlers
         Task<Response<Order?>> CancelAsync(CancelOrderRequest request);
         Task<Response<Order?>> CreateAsync(CreateOrderRequest request);
         Task<Response<Order?>> PayAsync(PayOrderRequest request);
-        Task<Response<Order>> RefundOrderRequest(RefundOrderRequest request);
+        Task<Response<Order>> RefundAsync(RefundOrderRequest request);
         Task<PagedResponse<List<Order>?>> GetAllAsync(GetAllOrdersRequest request);
         Task<Response<Order>> GetByNumberAsync(GetOrderByNumberRequest request);
     }

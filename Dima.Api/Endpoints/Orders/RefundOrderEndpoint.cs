@@ -28,7 +28,7 @@ namespace Dima.Api.Endpoints.Orders
                 UserId = user.Identity!.Name ?? string.Empty
             };
 
-            var result = await handler.RefundOrderRequest(request);
+            var result = await handler.RefundAsync(request);
 
             return result.IsSuccess
                 ? TypedResults.Ok(result)

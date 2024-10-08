@@ -104,9 +104,7 @@ namespace Dima.Api.Handlers
 
                     voucher.IsActive = false;
                     context.Vouchers.Update(voucher);
-
-                }
-                
+                }                
             }
             catch
             {
@@ -238,7 +236,7 @@ namespace Dima.Api.Handlers
 
         }
 
-        public async Task<Response<Order>> RefundOrderRequest(RefundOrderRequest request)
+        public async Task<Response<Order>> RefundAsync(RefundOrderRequest request)
         {
             Order? order;
             try
