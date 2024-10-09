@@ -1,5 +1,6 @@
 # Dima
-Aplicação para controle financeiro
+Aplicação FullStack para controle financeiro
+
 
 **Conceitos/Tecnologias aplicadas**
 
