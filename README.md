@@ -9,6 +9,7 @@ Aplicação FullStack para controle financeiro
 | User-secrets |
 | Padronização de Requests e Responses|
 | Autenticação e Autorização com Identity|
+|Pagamento com Stripe|
 | MudBlazor|
 | MudThemes|
 | MudCharts|
