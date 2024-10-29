@@ -7,6 +7,6 @@ namespace Dima.Core.Handlers
     public interface IStripeHandler
     {
         Task<Response<string?>> CreateSessionAsync(CreateSessionRequest request);
-        Task<Response<List<StripeTransactionResponse>>> GetTransactionsByOrderNumberAsunc(GetTransactionsByOrderNumberRequest request);
+        Task<Response<List<StripeTransactionResponse>>> GetTransactionsByOrderNumberAsync(GetTransactionsByOrderNumberRequest request);
     }
 }

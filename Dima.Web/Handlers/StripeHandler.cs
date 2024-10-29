@@ -16,7 +16,7 @@ namespace Dima.Web.Handlers
                 ?? new Response<string?>(null, 400, "Falha ao criar sessão no Stripe");
         }
 
-        public async Task<Response<List<StripeTransactionResponse>>> GetTransactionsByOrderNumberAsunc(GetTransactionsByOrderNumberRequest request)
+        public async Task<Response<List<StripeTransactionResponse>>> GetTransactionsByOrderNumberAsync(GetTransactionsByOrderNumberRequest request)
         {
             var result = await _client.PostAsJsonAsync($"v1/payments/stripe/{request.Number}/transactions", request);
             return await result.Content.ReadFromJsonAsync<Response<List<StripeTransactionResponse>>>() 
