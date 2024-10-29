@@ -16,6 +16,7 @@ namespace Dima.Web
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
             Configuration.BackEndUrl = builder.Configuration.GetValue<string>("BackendUrl") ?? string.Empty;
+            Configuration.StripePublicKey = builder.Configuration.GetValue<string>("StripePublicKey") ?? string.Empty;
 
             builder.RootComponents.Add<App>("#app");
             builder.RootComponents.Add<HeadOutlet>("head::after");
@@ -40,6 +41,7 @@ namespace Dima.Web
             builder.Services.AddTransient<IOrderHandler, OrderHandler>();
             builder.Services.AddTransient<ICategoryHandler, CategoryHandler>();
             builder.Services.AddTransient<IReportHandler, ReportHandler>();
+            builder.Services.AddTransient<IStripeHandler, StripeHandler>();
 
             builder.Services.AddLocalization();
             CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("pt-BR");
