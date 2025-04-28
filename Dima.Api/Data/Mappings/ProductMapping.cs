@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Dima.Api.Data
+namespace Dima.Api.Data.Mappings
 {
     public class ProductMapping : IEntityTypeConfiguration<Product>
     {

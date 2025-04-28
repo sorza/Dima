@@ -13,7 +13,7 @@ namespace Dima.Web
         {
             Typography = new Typography
             {
-                Default = new Default
+                Default = new DefaultTypography
                 {
                     FontFamily = ["Raleway", "sans-serif"]
                 }

@@ -20,7 +20,6 @@ namespace Dima.Api.Data
                 >(options)
     { 
         public DbSet<Category> Categories { get; set; } = null!;
-
         public DbSet<Product> Products { get; set; } = null!;
         public DbSet<Voucher> Vouchers { get; set; } = null!;
         public DbSet<Order> Orders { get; set; } = null!;
