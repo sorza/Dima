@@ -1,7 +1,7 @@
 # Dima
 Aplicação FullStack para controle financeiro
 
-|**Conceitos/Tecnologias Aplicadas**|
+|**Conceitos / Tecnologias Aplicadas**|
 |-----------------------------------|
 | Chain of Responsibility Pattern |
 | Minimal API |
