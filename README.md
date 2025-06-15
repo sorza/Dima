@@ -3,14 +3,12 @@ Aplicação FullStack para controle financeiro
 
 |**Conceitos/Tecnologias aplicadas**|
 |-----------------------------------|
-| Minimal API (Blazor Web Assembly)
+| Chain of Responsibility Pattern |
+| Minimal API |
 | Swagger |
 | EntityFramework |
 | User-secrets |
 | Padronização de Requests e Responses|
 | Autenticação e Autorização com Identity|
-|Pagamento com Stripe|
+| Pagamento com Stripe |
 | MudBlazor|
-| MudThemes|
-| MudCharts|
-| Componentização|
